@@ -4,7 +4,7 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 let interval = [null,null,null,null];
 let cards = document.querySelectorAll("div.card");
-let elements = document.querySelectorAll("div.cardHeader");
+let elements = document.querySelectorAll("a.cardHeader");
 
 function magic(event, header)
 {
