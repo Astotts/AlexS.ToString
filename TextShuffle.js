@@ -2,14 +2,25 @@ const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 //-----------------------Card Text Shuffles-------------------------------------------
 
-let interval = [null,null,null,null];
+
+let pos = [null,null,null];
+let interval = [null,null,null];
+let lineInterval = [null,null,null];
 let cards = document.querySelectorAll("div.card");
 let elements = document.querySelectorAll("a.cardHeader");
+let lineElem = document.getElementsByClassName("headerLine"); 
+
+for(let index = 0; index < 3; index++){
+  cards[index].onmouseover = event => {
+    magic(event,index);
+  }
+}
+ 
 
 function magic(event, header)
 {
   let iteration = 0;
-  
+
   clearInterval(interval[header]);
   
   interval[header] = setInterval(() => {
@@ -19,7 +30,7 @@ function magic(event, header)
         if(index < iteration) {
           return elements[header].dataset.value[index];
         }
-      
+        
         return letters[Math.floor(Math.random() * 26)]
       })
       .join("");
@@ -31,13 +42,6 @@ function magic(event, header)
     iteration += 1 / 5;
   }, 30);
 }
-
-for(let index = 0; index < 3; index++){
-  cards[index].onmouseover = event => {
-    magic(event,index);
-  }
-}
-
 //-------------------------------On Load Shuffles---------------------------------------
 
 //let onLoadElements = document.querySelectorAll("div.card");

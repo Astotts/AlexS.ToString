@@ -1,19 +1,52 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="styles1.css">
+<video autoplay loop muted plays-inline class="back-video">
+    <source src="pexels-pk-g-6924608 (Original).mp4" type="video/mp4">
+</video>
 <body>
-<header>Projects</header>
+<nav>
+    <a class="back-button" href="./index.html" onclick="animateClick()">&lt-Back</a>
+    <header>Projects</header>
+</nav>
 <menu>
-    <div class="projectCard">
+    <!--Cards should fade out as they reach the top of the screen-->
+    <!--The Header and back nav button should be fixed to the top of the screen-->
+    <div class="card">
+        <a class="cardHeader">Network Real Time Strategy : Astrolivid</a>
         <div class="project"></div>
+        <img class="cardIMG" src="Astrolivid.png" type="png"></img>
+        <div class="projectDate">Started in 2020</div>
+        <div class="projectDescription">Astrolivid follows a 4 year 
+            learning and development
+            journey. This project has taken me to flowfield based
+            pathfinding, networked multiplayer,
+            boids, shaders, multithreading, and data oriented programming. Project Astrolivid 
+            is certainly the hardest but best project 
+            I’ve worked on. </div>
+        <div class="gradient"></div>
     </div>
-    <div class="projectCard">
-        <div class="project"></div>
+    <div class="card">
+        <div class="project">Network Co-Op Wave Defense : Decay & Devotion
+    
+        </div>
     </div>
-    <div class="projectCard">
-        <div class="project"></div>
+    <div class="card">
+        <div class="project">Portfolio Website : Alex-S-ToString
+        </div>
     </div>
-    <div class="projectCard">
-        <div class="project"></div>
+    <div class="card">
+        <div class="project">.Net Application : Weather App
+        </div>
+    </div>
+    <div class="card">
+        <div class="project">C# Pathfinding : Flowfield Pathfinding Solution
+        </div>
+    </div>
+    <div class="card">
+        <div class="project">HLSL : Shader Testing
+        </div>
     </div>
 </menu>
 </body>
+
+<script src="LineAnimation.js"></script>
