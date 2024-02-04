@@ -1,3 +1,8 @@
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('./JetBrainsMono-Medium.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+} 
+
 body {
   display: grid;
   place-items: center;
@@ -51,13 +56,21 @@ header:hover{
 .headingText{
   background-color: transparent;
   width: 50%;
+  height: 100%;
   left: 35%;
   position: absolute;
-  text-align: center;
   font-family: 'Space Mono', monospace;
-  font-size: 3vw;
+  font-size: 4vw;
   text-align: left;
+  line-height: 4vw;
   pointer-events: none
+
+  
+}
+
+.credentials{
+  font-family: 'JetBrains Mono';
+  font-size: 1vw;
 }
 
 .portfolioIMG{
@@ -73,8 +86,8 @@ header:hover{
 .container {
   display: flex;
   position: absolute;
-  margin-top: 20%;
-  margin-bottom: 0%;
+  margin-top: 50vw;
+  margin-bottom: 10vw;
   width: 70%;
   height: 35%;
   justify-content: space-evenly;
@@ -93,7 +106,7 @@ header:hover{
 }
 
 .headerLine{
-  top: 2.7svw;
+  top: 2.7vw;
   position: absolute;
   height: 0.1%;
   left: 20%;
@@ -132,12 +145,6 @@ header:hover{
   transition: background-color 1s;
 }
 
-.card:hover > .cardHeader{}
-
-.cardHeader:hover{}
-
-.cardHeader:hover > .headerLine{}
-
 .card:hover{
   color: black;
   background-color: #c2920e;
@@ -166,140 +173,90 @@ a:active {
   text-decoration: none; 
 }
 
-/* ----------- iPhone 4 and 4S ----------- */
-
-/* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-}
-
-/* Landscape */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 480px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
-
-}
-
-/* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
-
-/* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2) {
-
-}
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
-}
-
-/* Landscape */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 568px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) {
-
-}
-
-/* ----------- iPhone 6, 6S, 7 and 8 ----------- */
-
-/* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
-
-}
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) { 
-
-}
-
-/* Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: landscape) { 
-
-}
-
-/* ----------- iPhone 6+, 7+ and 8+ ----------- */
-
-/* Portrait and Landscape */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
-
-}
-
-/* Portrait */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
-
-}
-
-/* Landscape */
-@media only screen 
-  and (min-device-width: 414px) 
-  and (max-device-width: 736px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: landscape) { 
-
-}
-
 /* ----------- iPhone X ----------- */
-
-/* Portrait and Landscape */
 @media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3) { 
+  and (min-device-width: 0px) 
+  and (max-device-width: 550px){ 
+    .header{
+      top:5%;
+      height: 17%;
+      width: 90%;
+    }
 
+    .portfolioIMG{
+      top:3vw;
+      left:-10px;
+      height: 12vh;
+      width: 40vw;
+    }
+
+    .headingText{
+      top:3vw;
+      background-color: transparent;
+      width: 70%;
+      left: 35%;
+      font-size: 6.5vw;
+    }
+
+    .credentials{
+      font-size: 2.3vw;
+    }
+    
+    .container{
+      display: grid;
+      margin-top: 100%;
+      width: 100%;
+      height: 70%;
+    }
+  
+    .card{
+      position: relative;
+      width: 80vw;
+      height: 80%;
+      margin-left:1%;
+      margin-top: 5%;
+      margin-bottom: 0%;
+      left:-0vw;
+      top:0px;
+    }
+
+    .cardIMG, .gradient{
+      top: 2.5%;
+      left: 2.5%;
+      height: 95%;
+      width: 95%;
+    }
+
+    .cardHeader{
+      top: 1vw;
+      font-size: 5vw;
+      width: 100%;
+    }
+    
+    .headerLine{
+      top: 7vw;
+      position: absolute;
+      height: 0.1%;
+      left: 10%;
+    }
+    
+    .card:hover .headerLine{
+      width: 80%;
+    }
 }
 
-/* Portrait */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: portrait) { 
+/* ----------- Google Pixel ----------- */
+/*@media screen 
+  and (device-width: 360px) 
+  and (device-height: 640px) 
+  and (-webkit-device-pixel-ratio: 3) {
 
-}
+}*/
 
-/* Landscape */
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 812px) 
-  and (-webkit-min-device-pixel-ratio: 3)
-  and (orientation: landscape) { 
+/* ----------- Galaxy S8+ ----------- */
+/*@media screen 
+  and (device-width: 360px) 
+  and (device-height: 740px) 
+  and (-webkit-device-pixel-ratio: 4) {
 
-}
+}*/
