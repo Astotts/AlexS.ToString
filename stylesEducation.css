@@ -1,0 +1,123 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('./Assets/JetBrainsMono-Medium.ttf') format('truetype');
+  }  
+  
+  a:link { 
+    color:white;
+    transition: 1s;
+  } 
+  a:visited { 
+    color:white;
+    text-decoration: none; 
+  } 
+  a:hover {
+    color:#c2920e;  
+  } 
+  a:active { 
+    color:white;
+    text-decoration: none; 
+  }
+
+body{
+    background-color: rgb(20, 20, 20);
+    display: grid;
+}
+
+menu{
+    left: 5%;
+    color: white;
+    font-size: 2vw;
+    font-family: 'Space Mono', monospace;
+    top: 15%;
+    position:absolute;
+    display: grid;
+    height: 100%;
+    width: 95%;
+    right: 5%;
+    padding: 0%;
+    margin: 0%;
+}
+
+.class{
+    background-color: transparent;
+    top:0px;
+    color: white;
+    font-size: 2vw;
+    font-family: 'Space Mono', monospace;
+    height: 80%;
+    
+}
+
+.classProjects{
+    background-color: transparent;
+    color: white;
+    font-size: 2vw;
+    font-family: 'Space Mono', monospace;
+    overflow: hidden;
+    height: 0%;
+    transition: 1s;
+}
+
+.class:hover .classProjects{
+    height: 50%;
+}
+
+h1{
+    height: 0%;
+    color: white;
+    font-size: 4vw;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+hr{
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    left:-100%;
+    width:95%;
+}
+
+header{
+    z-index: 20;
+    position: absolute;
+    color: white;
+    background-color: black;
+    width: 50%;
+    height: 15%;
+    margin-left: 25%;
+    text-align: center;
+    font-size: 5vw;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: clamp(2rem, 0.5vw, 1rem);
+}
+
+.back-button{
+    top: 1vw;
+    z-index: 20;
+    position: absolute;
+    color: white;
+    background-color: black;
+    width: 15%;
+    height: 15%;
+    margin-left: 5%;
+    text-align: center;
+    font-size: 3vw;
+    font-family: 'JetBrains Mono', monospace;
+    border-radius: clamp(2rem, 0.5vw, 1rem);
+    transition: 1s;
+}
+
+.back-button:hover{
+  color: #c2920e;
+}
+
+nav{
+    left:0px;
+    top:0px;
+    z-index: 20;
+    height: 15%;
+    background-color: black;
+    width: 100%;
+    position: fixed;
+    display: grid;
+}

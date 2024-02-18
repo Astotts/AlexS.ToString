@@ -1,0 +1,269 @@
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../Assets/JetBrainsMono-Medium.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  }  
+  
+  /*
+  https://www.w3schools.com/howto/tryit.asp?font=JetBrains%20Mono
+  https://www.w3schools.com/howto/tryit.asp?font=IBM%20Plex%20Mono
+  https://www.w3schools.com/howto/tryit.asp?font=Albert%20Sans
+  https://www.w3schools.com/howto/tryit.asp?font=Bebas%20Neue
+  */
+  
+  
+  body{
+      background-color: rgb(20,20,20);
+      display: grid;
+  }
+  
+  .back-video{
+      
+      filter:sepia(100%) saturate(2) hue-rotate(190deg) blur(7px);
+      
+      position: fixed;
+      right: 0px;
+      bottom: -45%;
+      min-width: 100%;
+      min-height: 100%;
+      z-index: -1;
+  }
+  
+  menu{
+      left:10%;
+      top: 30%;
+      position:absolute;
+      background-color: rgba(129, 129, 129, 0);
+      height: fit-content;
+      width: 80%;
+      right: 5%;
+      padding: 0%;
+      margin: 0%;
+  }
+  
+  header{
+      z-index: 20;
+      position: absolute;
+      color: white;
+      background-color: black;
+      width: 50%;
+      height: 15%;
+      margin-left: 25%;
+      text-align: center;
+      font-size: 5vw;
+      font-family: 'JetBrains Mono', monospace;
+      border-radius: clamp(2rem, 0.5vw, 1rem);
+  }
+  
+  .back-button{
+      top: 1vw;
+      z-index: 20;
+      position: absolute;
+      color: white;
+      background-color: black;
+      width: 15%;
+      height: 15%;
+      margin-left: 5%;
+      text-align: center;
+      font-size: 3vw;
+      font-family: 'JetBrains Mono', monospace;
+      border-radius: clamp(2rem, 0.5vw, 1rem);
+      transition: 1s;
+  }
+  
+  .back-button:hover{
+    color: #c2920e;
+  }
+  
+  nav{
+    left:0px;
+    top:0px;
+    z-index: 20;
+    height: 15%;
+    background-color: black;
+    width: 100%;
+    position: fixed;
+    display: grid;
+  }
+  
+  .card{
+      padding: 10px;
+      background-color: rgba(101, 101, 101, 0.551);
+      position: relative;
+      display: grid;
+      width: 80%;
+      height: 50%;
+      margin-left:1%;
+      margin-bottom:5%;
+      left:10%;
+      top:0px;
+      border-radius: clamp(2rem, 0.5vw, 1rem);
+      transition: 1s;
+  }
+
+  h1{
+    height: 0%;
+    color: white;
+    font-size: 4vw;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  h2{
+    height: 0%;
+    color: white;
+    font-size: 3vw;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  p{
+    font-size: 2vw;
+    font-family: 'Space Mono', monospace;
+    color: white;
+    background-color: transparent;
+  }
+  
+  
+  .card:hover{
+    color: black;
+    background-color: #c2920e;
+  }
+  
+  .project{
+      background-color: black;
+      position: absolute;
+      display: grid;
+      width: 98%;
+      height: 97%;
+      margin-left:1%;
+      top:1.5%;
+      left:0px;
+      border-radius: clamp(2rem, 0.5vw, 1rem);
+  }
+  
+  .headerLine{
+      top: 3vw;
+      position: absolute;
+      height: 0.1%;
+      left: 1.5%;
+      width: 0%;
+      z-index: 6;
+      background-color: rgb(255, 200, 59);
+      transition: width 1s;
+  }
+  
+  .card:hover .headerLine{
+    width: 50%;
+  }
+  
+  .cardHeader{
+    top:1.5%;
+    left:1%;
+    font-family: 'Space Mono', monospace;
+    font-size: 2.5vw;
+    color: white;
+    text-align: center;
+    position: absolute;
+    background-color: black;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: clamp(2rem, 0.5vw, 1rem);
+  
+    height: 10%;
+  
+    z-index: 5;
+    transition: 1s;
+  }
+  
+  .card:hover .cardHeader{
+    color:rgb(255, 200, 59)
+  }
+  
+  .projectDate{
+    top:11.5%;
+    left:8%;
+  
+    height: 10%;
+  
+    font-family: 'Jetbrains Mono', monospace;
+    font-size: 2vw;
+    color: transparent;
+    text-align: center;
+    position: absolute;
+    
+    background-color: transparent;
+    border-radius: clamp(2rem, 0.5vw, 1rem);
+    transition: 1s;
+  
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+    z-index: 5;
+  }
+  
+  .card:hover .projectDate{
+    color:white;
+  }
+  
+  .projectDescription{
+    top:25%;
+    left:4%;
+    font-family: 'Space Mono', monospace;
+    font-size: 1.5vw;
+    color: transparent;
+    text-align:start;
+    position: absolute;
+    transition: 1s;
+    background-color: transparent;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: clamp(2rem, 0.5vw, 1rem);
+    z-index: 5;
+    width: 30%
+  }
+  
+  .card:hover .projectDescription{
+    color: white;
+  }
+  
+  .cardIMG{
+    top:1.5%;
+    left:1%;
+    position: absolute;
+    height: 97%;
+    width: 98%;
+    object-fit: cover;  
+    border-radius: clamp(2rem, 0.5vw, 1rem);
+    z-index: 2;
+    
+  }
+  
+  .gradient {
+    top:1.5%;
+    left:1%;
+    background: linear-gradient(90deg, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0.9) 40%, rgba(0, 0, 0, 0) 80%);
+    z-index: 3;
+    position: absolute;
+    height: 97%;
+    width: 98%;
+    object-fit: cover;  
+    border-radius: clamp(2rem, 0.5vw, 1rem);
+  }
+  
+  a:link { 
+    transition: 1s;
+    color: white;
+  } 
+  a:visited { 
+    color: white;
+  } 
+  a:hover { 
+    color: #c2920e;
+    text-decoration: none; 
+  } 
+  a:active { 
+    text-decoration: none; 
+  }

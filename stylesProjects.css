@@ -1,7 +1,7 @@
 
 @font-face {
   font-family: 'JetBrains Mono';
-  src: url('./JetBrainsMono-Medium.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+  src: url('./Assets/JetBrainsMono-Medium.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
 }  
 
 /*
@@ -19,7 +19,7 @@ body{
 
 .back-video{
     
-    filter:blur(7px) hue-rotate(190deg);
+    filter:sepia(100%) saturate(2) hue-rotate(190deg) blur(7px);
     
     position: fixed;
     right: 0px;
@@ -151,6 +151,16 @@ nav{
   transition: 1s;
 }
 
+.projectLink{
+  top:0px;
+  left:0px;
+  background-color: transparent;
+  z-index: 10;
+  height: calc(100%);
+  width: calc(100%);
+  border-radius: clamp(2rem, 0.5vw, 1rem);
+}
+
 .card:hover .cardHeader{
   color:rgb(255, 200, 59)
 }
@@ -225,6 +235,7 @@ nav{
   width: 98%;
   object-fit: cover;  
   border-radius: clamp(2rem, 0.5vw, 1rem);
+  pointer-events: none;
 }
 
 a:link { 
