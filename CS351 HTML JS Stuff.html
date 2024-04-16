@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--I dont have much to say about HTML JS or CSS theres a lot going on but not much to talk about-->
+<html lang="en">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<body>
+
+<div id="physicsDemoUI">
+    <div style="top: 0%; width: 100%; height: 100%;">
+        <button id="startbutton">Start</button>
+    </div>
+    <div style="top: 50%; width: 100%; height: 100%; display: flex;">
+        <button class="ballSelect" onclick="SetupStaticBall();">
+            <div style="background-color: greenyellow; border-radius: 100%; padding: 20%; width: 20%; height: 20%; text-align: center;">Static</div>
+        </button>
+        <button class="ballSelect" onclick="SetupBouncyBall();">
+            <div style="background-color: red; border-radius: 100%; padding: 20%; width: 20%; height: 20%; text-align: center;">Bouncy</div>
+        </button>
+    </div>
+</div>
+
+<nav>
+    <button class="pageNumber" onclick="SetupSnake();">
+        1
+        <div class="line"></div>
+    </button>
+    <button class="pageNumber" onclick="SetupDrawing();">
+        2
+        <div class="line"></div>
+    </button>
+</nav>
+</body>
+
+</html>
+
+<style>
+    /*I figure we need a parent and child class as well as a few loops and I've always wanted to make a mouse following thing
+    So I guess its snake time*/
+    nav {
+        position: absolute;
+        top: 90%;
+        display: flex;
+        left: 50%;
+        background-color: rgb(62, 61, 61);
+        padding: 0.5%;
+        border-radius: 15px;
+    }
+    html, body {
+        overflow: hidden;
+        background-color: black;
+    }
+    #physicsDemoUI {
+        left: 42.5%;
+        position: absolute;
+        background-color: rgb(62, 61, 61);
+        top: 200%;
+        width: 20%;
+        height: 15%;
+        display: grid;
+        border-radius: 15%;
+        transition: top 1s;
+    }
+    #startbutton {
+        width: 80%;
+        height: 50%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-top: 5%;
+    }
+    .ballSelect {
+        width: 40%;
+        height: 80%;
+        margin-left: 10%;
+        margin-right: 10%;
+        margin-bottom: 2%;
+        margin-top: 2%;
+        display: flex;
+        justify-content: center;
+    }
+    .pageNumber{
+        color: white;
+        background-color: rgba(0,0,0,0);
+        border-color: rgba(0,0,0,0);
+        font-family: 'Space Mono', monospace;
+        font-size: 2rem;
+    }
+    .gradient {
+        color: white;
+        text-align: center;
+        cursor: none;
+        display: inline-block;
+        position: absolute;
+        z-index: -1;
+        /*width: 60em;
+        height: 60em;*/
+        /*background-image:
+        radial-gradient(
+            circle closest-side,
+            rgb(7, 167, 17) 1%, rgba(0, 255, 8, 0.6) 5%, rgba(38, 158, 2, 0.9) 10%,
+            rgba(0, 0, 0, 0.1) 30%, rgba(0,0,0,0) 45%
+        );*/
+    }
+
+    .line{
+        top: 2.7vw;
+        position: center;
+        height: 10%;
+        left: 0%;
+        width: 0%;
+        z-index: 3;
+        background-color: rgb(252, 251, 250);
+        transition: width 1s;
+    }
+    button:hover .line{
+        width: 100%;
+    }
+    .staticBall {
+        width: 5em;
+        height: 5em;
+        border-radius: 10em;
+        background-color: greenyellow;
+        position: absolute;
+        z-index: -1;
+    }
+    .bouncyBall {
+        width: 5em;
+        height: 5em;
+        border-radius: 10em;
+        background-color: red;
+        position: absolute;
+        z-index: -1;
+    }
+    #ballCursor {
+        width: 5em;
+        height: 5em;
+        border-radius: 10em;
+        color: white;
+        background-color: white;
+        text-align: center;
+        cursor: none;
+        display: inline-block;
+        position: absolute;
+        z-index: -1;
+    }
+    
+</style>
+
+<script>
+    var snakeTimeBaby = false;
+    var snakeSegment = [];
+    var width, height;
+    var fullSnakeString = "";
+
+    var staticBallType = true;
+    var ballCursor;
+    //Snake Snake Snake Snake Stuff ----------------------------------------------------------------------------------
+
+    //At first I just made a single gradient follow the cursor and I wanted to make it a torch and draw shadows but theres
+    //no quads :(    
+    //So instead you get snake
+    function SetupSnake(){
+        //Kill all ball elements
+        var ballSelectUI = document.getElementById('physicsDemoUI');
+        SpawnSnake();
+        ballSelectUI.style.top = 200 + "%";
+        var allStaticBalls = document.querySelectorAll('div.staticBall');
+        var allBouncyBalls = document.querySelectorAll('div.bouncyBall');
+
+        for(var i = 0; allStaticBalls.length > i; i++){
+            allStaticBalls[i].remove();
+        }
+        for(var i = 0; allBouncyBalls.length > i; i++){
+            allBouncyBalls[i].remove();
+        }
+
+        var ballCursor = document.getElementById("ballCursor");
+        if(ballCursor){
+            ballCursor.remove(); 
+        }
+    }
+
+    function SpawnSnake(){
+        var snakeString = "Snake ";
+        var snakeSize = 4;
+        snakeSize = (snakeSize * 6) - 1; //segments * 6 characters 
+
+        var counter = 0;
+        do{
+            var div = document.createElement('div');
+            div.className = "gradient";
+            let text = document.createTextNode(snakeString[counter % 6]);
+            fullSnakeString += snakeString[counter % 6];
+            div.appendChild(text);
+            document.body.appendChild(div);
+            counter++;
+        }while(counter < snakeSize)
+
+        console.log(fullSnakeString);
+
+        snakeSegment = document.querySelectorAll("div.gradient");
+        width = snakeSegment[0].offsetWidth / 2;
+        height = snakeSegment[0].offsetHeight / 2;
+
+        //console.log("Width of the element:", width);
+        //console.log(width + " " + height);
+
+        for(var i = 0; snakeSegment.length > i; i++){
+            snakeSegment[i].x = 0;
+            snakeSegment[i].y = 0;
+        } 
+
+        snakeTimeBaby = true;
+    }
+
+    //Physics Ball Setup Stuff ----------------------------------------------------------------------------------
+
+    function SetupDrawing(){
+        fullSnakeString = "";
+        var count = snakeSegment.length - 1;
+        while(count >= 0){
+            console.log("test");
+            snakeSegment[count].remove();
+            count--;
+        }
+        var ballSelectUI = document.getElementById('physicsDemoUI');
+        ballSelectUI.style.top = 70 + "%";
+        snakeTimeBaby = false;
+    }
+
+    function SetupStaticBall(){
+        var existingCursor = document.getElementById("ballCursor");
+        if (existingCursor) {
+            existingCursor.remove();
+        }
+        staticBallType = true;
+        ballCursor = NewSelection();
+    }
+    function SetupBouncyBall(){
+        var existingCursor = document.getElementById("ballCursor");
+        if (existingCursor) {
+            existingCursor.remove();
+        }
+        staticBallType = false;
+        ballCursor = NewSelection();
+    }
+
+    function NewSelection(){
+
+        var ball = document.createElement('div');
+        document.body.appendChild(ball);
+        if(!staticBallType){
+            ball.style.backgroundColor = "red";
+            ball.id = "ballCursor"
+            ball.x = 0;
+            ball.y = 0;
+        }   
+        else{
+            ball.style.backgroundColor = "greenyellow";
+            ball.id = "ballCursor"
+            ball.x = 0;
+            ball.y = 0;
+        }
+        document.body.appendChild(ball);
+        width = ball.offsetWidth / 2;
+        height = ball.offsetHeight / 2;
+        return ball;
+    }
+
+    //Ball Classes ---------------------------------------------------------------
+
+    class Ball {
+        constructor(x,y){
+            this.x = x;
+            this.y = y;
+        }
+    } 
+
+    class Bouncy extends Ball {
+        constructor(x,y,radius){
+            super(x,y);
+            var collisions = [];
+            var velocityX, velocityY;
+            var gravity = 9.81;
+            this.radius = radius;
+        }
+        
+        //As much as I want to finish this I've got a midterm exam, final speech, and research project to work on 
+        SimulateStep(allOtherBalls){
+            //Find all collisions (any other ball within 2r)
+            //If Collisions calculate collision vector
+            //Else add gravity to velocity 
+
+            //Move according to velocity
+        }
+
+        CalculateCollisionVector(){
+            //Subtract positions and get distance for each axis x1-x2 & y1-y2
+            //Add to direction vector
+            //Repeat until no collisions left
+            //Normalize direction vector
+            //Multiply direction times arbitrary constant like (3/4) * currentvelocity
+        }
+    }
+
+    //Actual Simulating ------------------------------------------------------------------------------
+
+    document.onmousemove = function(e){  
+        var x = e.pageX;
+        var y = e.pageY;  
+
+        if(!snakeTimeBaby && ballCursor != undefined && ballCursor != null){
+            //Drawing Stuff
+            ballCursor.style.left = x - width + "px";
+            ballCursor.style.top = y - height + "px";
+            ballCursor.x = x;
+            ballCursor.y = y;
+        }
+        else{
+            //Snake stuff
+            snakeSegment.forEach(function(element, index){
+                //console.log(index);
+                element.style.left = x - width + "px";
+                element.style.top = y - height + "px";
+                element.x = x;
+                element.y = y;
+
+                nextSegment = snakeSegment[index + 1] || snakeSegment[0]; //Conditional nulls is nice B)
+                x += (nextSegment.x - x) * 0.9
+                y += (nextSegment.y - y) * 0.9
+            });
+        }
+    };
+
+    document.body.addEventListener("click", function(e) {
+        if(!snakeTimeBaby){ //Me when its not snake time ;-;
+            var x = e.clientX;
+            var y = e.clientY;
+            if(staticBallType){
+                var ball = document.createElement('div');
+                ball.className = "staticBall"
+                ball.ballType = new Ball(x,y); 
+                document.body.appendChild(ball);
+                ball.style.top = y - height + "px"
+                ball.style.left = x - width + "px"
+            }
+            else{
+                var ball = document.createElement('div');
+                ball.className = "bouncyBall"
+                ball.ballType = new Bouncy(x,y,width); 
+                document.body.appendChild(ball);
+                ball.style.top = y - height + "px"
+                ball.style.left = x - width + "px"
+            }
+        }
+    });
+
+
+
+    /*function BallSimulation(){
+        clearInterval();
+        //QuerySelectorAll bouncy balls
+        //QuerySelectorAll static balls
+        //Take list of bouncy balls and iterate SimulateStep()
+        SimulateAll(() => {
+            //bouncyBalls.SimulateStep(staticBalls);
+        }, 25);
+        
+        if(startSim){
+            BallSimulation();
+        }
+        else{
+            return;
+        }
+    }*/
+
+</script>
